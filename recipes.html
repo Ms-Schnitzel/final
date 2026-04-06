@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dishly</title>
+    <!-- <meta name="description" content="Home page for the Study Guide to English Vocabulary!  Here you can search new words to learn their definitions, parts of speech, and more."> -->
+    <meta name="author" content="Zachery Nielsen">
+    <!-- <meta property="og:title" content="Study Guide to English Vocabulary"> -->
+    <!-- <meta property="og:description" content="The Study Guide to English Vocabulary!  Where you can search new words to learn their definitions, parts of speech, and more."> -->
+    <!-- <meta property="og:image" content="https://ms-schnitzel.github.io/wdd231/final/images/logo.png"> -->
+    <!-- <meta property="og:url" content="https://ms-schnitzel.github.io/wdd231/final/index.html"> -->
+    <!-- <link rel="icon" href="./images/logo.ico"> -->
+    <link rel="stylesheet" href="./styles/normalize.css">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tinos&display=swap" rel="stylesheet">
+    <script src="./scripts/date.js" defer></script>
+    <script src="./scripts/navigation.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div>
+        <img src="./images/icon.svg" alt="dishly logo" id="logo">
+        <h2>Dishly</h2>
+      </div>
+      <nav>
+        <a id="menu" href="#"></a>
+        <ul class="navbar">
+          <li><a href="index.html" id="home">Home</a></li>
+          <li><a href="search.html" id="search">Search</a></li>
+          <li><a href="recipes.html" id="recipes">My Recipes</a></li>
+        </ul>        
+      </nav>
+    </header>
+
+    <main class="main-home">
+      <section id="quick-section" class="home-box">
+        <h1>Quick Search</h1>
+        <form class="quick-form">
+          <fieldset>
+            <label for="quick-search"></label>
+            <input type="text" id="" class="search" name="" title="" required pattern="[A-Za-z]*" placeholder="Search">
+            <button type="submit" id="quick-submit" class="submit">&#x1F50E;&#xFE0E;</button>
+          </fieldset>
+        </form>
+        <div id="quick-display"></div>
+      </section>
+      <section id="recipe-section" class="home-box">
+        <h2>Recently Saved Recipes</h2>
+        <div id="recipe-display"></div>
+      </section>
+      <section id="recent-section" class="home-box">
+        <h2>Nutrition Facts</h2>
+        <div id="nutrition-display"></div>
+      </section>
+    </main>
+    <footer>
+      <a href="https://github.com/Ms-Schnitzel"><img src="./images/github.svg" alt="Github logo" class="socials"></a>
+      <a href="https://www.linkedin.com/in/zachery-nielsen-a2436523b/"><img src="./images/linkedin.svg" alt="Instagram logo" class="socials"></a>
+      <a href="https://www.instagram.com"><img src="./images/instagram.svg" alt="LinkedIn logo" class="socials"></a>
+      <div id="dates">
+        <p>&copy; <span id="currentYear"></span> | Zachery Nielsen | Utah, USA</p>
+        <p id="lastModified"></p>
+      </div>
+    </footer>
+  </body>
+</html>
