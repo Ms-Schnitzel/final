@@ -21,17 +21,15 @@ header {
   justify-content: space-between;
   align-items: center;
   text-align: center;
-}
-
-header img {
-  position: absolute;
-  left: 1em;
-  width: 4em;
-  top: 0.5em;
-}
-
-header h1 {
-  margin-left: 1.4em;
+  img {
+    position: absolute;
+    left: 1em;
+    width: 4em;
+    top: 0.5em;
+  }
+  h1 {
+    margin-left: 1.4em;
+  }
 }
 
 nav a {
@@ -88,16 +86,38 @@ main {
 .home-box{
   margin: 2em;
   color: var(--font);
-}
-.home-box h1, .home-box h2 {
-  padding: 5px;
-  width: 220px;
-  border-bottom-style: solid;
-  border-left-style: solid;
+  h1, h2 {
+    padding: 5px;
+    width: 240px;
+    border-bottom-style: solid;
+    border-left-style: solid;
+  }
+  h1 {
+    width: 300px;
+  }
 }
 
-#quick-section{
+#recipe-section{
   grid-area: quick;
+  h1, fieldset, #recipe-display {
+    margin: 10px auto;
+  }
+}
+
+.search-section {
+  grid-template-columns: 1fr 1fr;
+  h1, fieldset, #recipe-display {
+    margin: 10px auto;
+    grid-column: span 2;
+  }
+}
+
+.recipe-section {
+  grid-template-columns: 1fr 1fr;
+  h2, fieldset, #saved-display {
+    margin: 10px auto;
+    grid-column: span 2;
+  }
 }
 
 form {
@@ -124,14 +144,14 @@ form {
   background-color: white;
 }
 
-#recipe-section{
+#saved-section{
   grid-area: recipe;
   border-radius: 15px;
   padding: 1em;
   margin: 1em;
 }
 
-#facts-section{
+#nutrition-section{
   grid-area: facts;
   border-radius: 15px;
   padding: 1em;

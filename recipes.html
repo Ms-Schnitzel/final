@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Tinos&display=swap" rel="stylesheet">
     <script src="./scripts/date.js" defer></script>
     <script src="./scripts/navigation.js" defer></script>
+    <script type="module" src="./scripts/recipes.mjs"></script>
   </head>
   <body>
     <header>
@@ -35,26 +36,32 @@
       </nav>
     </header>
 
-    <main class="main-home">
-      <section id="quick-section" class="home-box">
-        <h1>Quick Search</h1>
-        <form class="quick-form">
-          <fieldset>
-            <label for="quick-search"></label>
-            <input type="text" id="" class="search" name="" title="" required pattern="[A-Za-z]*" placeholder="Search">
-            <button type="submit" id="quick-submit" class="submit">&#x1F50E;&#xFE0E;</button>
-          </fieldset>
-        </form>
-        <div id="quick-display"></div>
-      </section>
-      <section id="recipe-section" class="home-box">
+    <main class="main-recipe">
+      <section class="home-box recipe-section">
         <h2>Recently Saved Recipes</h2>
-        <div id="recipe-display"></div>
+        <div id="saved-display"></div>
       </section>
-      <section id="recent-section" class="home-box">
-        <h2>Nutrition Facts</h2>
-        <div id="nutrition-display"></div>
-      </section>
+      <template id="recipe-template">
+        <section class="recipe-card">
+          <h3 class="title"></h3>
+          <img class="recipe-img">
+          <ul class="ingredients"></ul>
+          <p class="instructions"></p>
+          <p class="tags"></p>
+          <a class="youtube"></a>
+          <button>Save Recipe</button>
+        </section>
+      </template>
+      <template id="nutrition-template">
+        <section class="nutrition-card">
+          <h3 class="name"></h3>
+          <!-- <p class="brand"></p> -->
+          <ul class="nutrients"></ul>
+          <p class="ingredients"></p>
+          <p class="serving"></p>
+        </section>
+      </template>
+      <dialog id="modal"></dialog>
     </main>
     <footer>
       <a href="https://github.com/Ms-Schnitzel"><img src="./images/github.svg" alt="Github logo" class="socials"></a>
