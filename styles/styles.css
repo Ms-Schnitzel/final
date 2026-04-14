@@ -3,6 +3,7 @@
   --secondary: #027218;
   --secondary-faded: rgba(2, 114, 24, 50%);
   --accent: #36454F;
+  --accent-faded: rgba(54, 69, 79, 80%);
   --font: #F4F0EC;
 }
 
@@ -78,9 +79,16 @@ main {
   min-height: 79.3vh;
 }
 .main-home {
-  grid-template-areas:
+  grid-template:
   "quick quick"
-  "recipe facts";
+  "recipe facts"
+  / 50% 50%;
+  @media (max-width: 800px) {
+    grid-template:
+    "quick"
+    "facts"
+    "recipe";
+  }
 }
 
 .home-box{
@@ -118,6 +126,229 @@ main {
     margin: 10px auto;
     grid-column: span 2;
   }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.recipe-card {
+  display: grid;
+  grid-template:
+  "name name"
+  "pic ingredients"
+  "instructions ingredients"
+  "tags youtube"
+  "button button"
+  / 1fr 1fr;
+  animation: fadeIn .5s;
+  padding: 1em 2em;
+  background: var(--secondary);
+  border: solid black .8em;
+  border-radius: 25px;
+  margin: 1em auto;
+  max-width: 800px;
+  @media (max-width: 800px) {
+    grid-template:
+    "name"
+    "pic"
+    "ingredients"
+    "instructions"
+    "tags"
+    "youtube"
+    "button";
+  }
+  .title {
+    grid-area: name;
+    margin: 0 auto;
+    margin-top: 0.3em;
+    font-size: 2em;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    padding: 0 10px;
+    background: var(--accent);
+  }
+  .recipe-img {
+    grid-area: pic;
+    width: 80%;
+    max-width: 30em;
+    margin: 2em auto;
+    border: solid 0.5em var(--primary);
+    border-radius: 10%;
+  }
+  .ingredients {
+    grid-area: ingredients;
+    list-style: none;
+    margin: 2em auto;
+    padding: 0;
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0.5em;
+      padding: 0.3em 0.5em;
+      width: 380px;
+      border-radius: 5px;
+      background: var(--primary);
+      @media (max-width: 1200px) {
+        font-size: 0.8em;
+      }
+    }
+    button {
+      width: 8em;
+      margin: 0;
+      padding: 0.2em;
+    }
+  }
+  .instructions {
+    grid-area: instructions;
+    padding: 1em;
+  }
+  .tags {
+    grid-area: tags;
+  }
+  .youtube {
+    grid-area: youtube;
+    color: var(--font);
+    margin: 0 auto;
+  }
+  button {
+    grid-area: button;
+    width: 8em;
+    color: var(--font);
+    margin: 0 auto;
+    padding: 7px;
+    font-size: 1em;
+    border: solid lightgray 2px;
+    border-radius: 25px;
+    background-color: var(--accent);
+    transition: .5s;
+  }
+  button:active {
+    transform: scale(.9);
+    transition: .1s;
+  }
+}
+
+.saved-cards {
+  .recipe-card {
+    grid-template:
+    "name"
+    "pic"
+    "ingredients"
+    "instructions"
+    "tags"
+    "youtube"
+    "button";
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border-radius: 10px;
+    max-width: 600px;
+    .recipe-img {
+      max-width: 320px;
+      margin: 0.5em auto;
+      @media (max-width: 1200px) {
+        max-width: 200px;
+      }
+      @media (max-width: 800px) {
+        max-width: 480px;
+      }
+    }
+    .ingredients {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      @media (max-width: 800px) {
+        grid-template-columns: 1fr;
+      }
+      li {
+        font-size: 0.8em;
+        width: 175px;
+        @media (max-width: 1200px) {
+          width: 100px;
+          font-size: 0.5em;
+        }
+        @media (max-width: 800px) {
+          width: 280px;
+          font-size: 0.8em;
+        }
+      }
+    }
+    .instructions {
+      font-size: 0.8em;
+    }
+  }
+}
+
+.nutrition-card {
+  display: grid;
+  grid-template:
+  "name"
+  "nutrients"
+  "ingredients"
+  "serving"
+  / 1fr;
+  animation: fadeIn .5s;
+  margin-top: 2em;
+  padding: 1em 2em;
+  background: var(--secondary);
+  border: solid black 1em;
+  border-radius: 25px;
+  .name {
+    grid-area: name;
+    margin: 0 auto;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    padding: 0 10px;
+    background: var(--accent);
+  }
+  .nutrients {
+    grid-area: nutrients;
+    list-style: none;
+    padding: 0;
+  }
+  .ingredients {
+    grid-area: ingredients;
+  }
+  .serving {
+    grid-area: serving
+  }
+}
+
+#modal {
+  background: none;
+  border: none;
+  color: var(--font);
+  /* animation: fadeIn .5s; */
+  .nutrition-card {
+    border-radius: 10px;
+  }
+  button {
+    position: absolute;
+    bottom: 2.5em;
+    right: 2.5em;
+    grid-area: button;
+    width: 8em;
+    color: var(--font);
+    margin: 0 auto;
+    padding: 7px;
+    font-size: 1em;
+    border: solid lightgray 2px;
+    border-radius: 25px;
+    background-color: var(--accent);
+    transition: .5s;
+  }
+  button:active {
+    transform: scale(.9);
+    transition: .1s;
+  }
+  button:hover {
+  transition: 0.5s;
+  box-shadow: 0 0 7px 7px var(--secondary);
+}
+}
+::backdrop {
+  background-color: var(--accent-faded);
 }
 
 form {

@@ -5,7 +5,6 @@ const nutritionDisplay = document.querySelector("#nutrition-display");
 const nutritionTemplate = document.querySelector("#nutrition-template");
 const savedDisplay = document.querySelector("#saved-display");
 const modal = document.querySelector("#modal");
-// const closeModal = document.querySelector("#close-modal");
 
 let savedRecipes = JSON.parse(localStorage.getItem("saved") || "[]");
 
@@ -19,16 +18,29 @@ export async function getRecipe(food) {
 
 export function showAllRecipes(recipes) {
   recipeDisplay.replaceChildren();
-  recipes.forEach((recipe) => {
-    console.log(recipe);
-    createRecipeBox(recipe, recipeDisplay);
-  });
+  if (recipes === null) {
+    const placeholder = document.createElement("h3");
+    placeholder.textContent = "Sorry, no recipes found."
+    recipeDisplay.append(placeholder);
+  } else {
+    recipes.forEach((recipe) => {
+      console.log(recipe);
+      createRecipeBox(recipe, recipeDisplay);
+    });
+  }
 }
 
-export function showSingleRecipe(recipe) {
+export function showSingleRecipe(recipes) {
   recipeDisplay.replaceChildren();
   // console.log(recipe);
-  createRecipeBox(recipe, recipeDisplay);
+  if (recipes === null) {
+    const placeholder = document.createElement("h3");
+    placeholder.textContent = "Sorry, no recipes found."
+    recipeDisplay.append(placeholder);
+  } else {
+    const recipe = recipes[0];
+    createRecipeBox(recipe, recipeDisplay);
+  }
 }
 
 const createRecipeBox = (recipe, parent) => {
@@ -42,6 +54,7 @@ const createRecipeBox = (recipe, parent) => {
   tags.textContent = recipe.strTags;
   if (recipe.strYoutube !== null) {
     youtube.href = recipe.strYoutube;
+    youtube.textContent = 'Check it out on Youtube!'
   }
 
   for (let i = 1; i <= 20; i++) {
@@ -144,7 +157,7 @@ export function getRecentRecipes() {
   } else {
     savedDisplay.replaceChildren();
     let size = savedRecipes.length;
-    for (let i = 0; i <= 3; i++) {
+    for (let i = 0; i <= 2; i++) {
       if (savedRecipes[size - i] !== undefined) {
         createRecipeBox(savedRecipes[size-i], savedDisplay);
       }

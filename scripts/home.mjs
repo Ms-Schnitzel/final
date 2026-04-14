@@ -13,7 +13,7 @@ recipeForm.addEventListener("submit", function (e) {
   getRecipe(recipeSearch.value)
     .then(data => {
       // console.log(data[0]);
-      showSingleRecipe(data[0]);
+      showSingleRecipe(data);
     })
     .catch(err => console.error(err));
 });
