@@ -45,7 +45,7 @@ export function showSingleRecipe(recipes) {
 
 const createRecipeBox = (recipe, parent) => {
   const clone = recipeTemplate.content.cloneNode(true);
-  const [title, img, ingredients, instructions, tags, youtube, save] = clone.querySelectorAll("h3, img, ul, p, p, a, button");
+  const [title, img, ingredients, instructions, tags, youtube, btn] = clone.querySelectorAll("h3, img, ul, p, p, a, button");
 
   title.textContent = recipe.strMeal;
   img.src = recipe.strMealThumb;
@@ -91,11 +91,27 @@ const createRecipeBox = (recipe, parent) => {
     }
   }
     
-  save.addEventListener("click", () => {
-    console.log(recipe);
-    savedRecipes.push(recipe);
-    localStorage.setItem("saved", JSON.stringify(savedRecipes));
-  })
+  if (document.querySelector(".main-recipe")) {
+    btn.textContent = "Remove Recipe";
+    btn.addEventListener("click", () => {
+      const index = savedRecipes.findIndex(food => food.strMeal === recipe.strMeal);
+      if (index !== -1) {
+        savedRecipes.splice(index, 1);
+        localStorage.setItem("saved", JSON.stringify(savedRecipes));
+        getSavedRecipes();
+      }
+    });
+  } else {
+    btn.addEventListener("click", () => {
+    
+      savedRecipes.push(recipe);
+      localStorage.setItem("saved", JSON.stringify(savedRecipes));
+
+      if (document.querySelector(".main-home")) {
+        getRecentRecipes();
+      }
+    });
+  }
 
   parent.appendChild(clone);
 }
@@ -166,12 +182,12 @@ export function getRecentRecipes() {
 }
 
 export function getSavedRecipes() {
+  savedDisplay.replaceChildren();
   if (savedRecipes.length === 0) {
     const placeholder = document.createElement("h3");
     placeholder.textContent = "You haven't saved any recipes yet!"
     savedDisplay.append(placeholder);
   } else {
-    savedDisplay.replaceChildren();
     savedRecipes.forEach((recipe) => {
       createRecipeBox(recipe, savedDisplay);
     })
